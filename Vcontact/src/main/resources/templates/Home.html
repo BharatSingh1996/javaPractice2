@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+<body>
+	<div align="center">
+		<h1>ThymeLeaf CRUD</h1>
+		<a th:href="@{/home/new}">Add New</a>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Action</th>
+
+				</tr>
+
+			</thead>
+
+			<tbody>
+				<tr th:each="emp :${list}">
+					<td th:text="${emp.firstName}"></td>
+					<td th:text="${emp.lastName}"></td>
+					<td th:text="${emp.email}"></td>
+					<td><a th:href="@{/home/updateForm/{id}(id=${emp.id})}">Update</a><a
+						th:href="@{/home/delete/{id}(id=${emp.id})}">Delete</a></td>
+
+				</tr>
+
+			</tbody>
+
+
+		</table>
+
+
+
+
+	</div>
+
+
+</body>
+</html>
