@@ -11,9 +11,11 @@
 
 		<form action="#" th:action="@{/home/save}" th:object="${employee}"
 			method="post">
+<!-- 			<div th:if="${param.error}"> invalid User name or email -->
+<!-- 			</div> -->
 			<input type="text" th:field="*{firstName}" placeholder="First Name"><br>
 			<input type="text" th:field="*{lastName}" placeholder="Last Name"><br>
-			<input type="text" th:field="*{email}" placeholder="Email"><br>
+			<input type="email" th:field="*{email}" placeholder="Email"><br>
 			<button type="submit">Save Employee</button>
 			<br> <br> <a th:href="@{/home/all}">back to main</a>
 

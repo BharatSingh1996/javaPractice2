@@ -1,15 +1,16 @@
 package com.bharat.contact.entity;
 
-import javax.persistence.Column;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,21 +20,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Builder
-public class Employee {
+public class SignUpUsers {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "Id")
-	@NotNull
-	private Long id;
-	@NotNull
-	private String firstName;
-	@NotNull
-	private String lastName;
-	@javax.validation.constraints.Email
+	private int id;
+	private  String username;
 	private String email;
-	
-	@ManyToOne()
-	private SignUpUsers signUpUsers;
-
+	private String password;
+	private String role;
+	@OneToMany( mappedBy = "signUpUsers",  cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Employee> emp;
 }

@@ -2,6 +2,8 @@ package com.bharat.contact.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,13 +40,13 @@ public class HomeController {
 	}
 
 	@PostMapping("/save")
-	public String Save(@ModelAttribute Employee employee) {
+	public String Save(@Valid @ModelAttribute Employee employee) {
 
 		employeeService.Create(employee);
 		return "redirect:/home/all";
 	}
 	@GetMapping("/updateForm/{id}")
-	public String getUpdateForm(@PathVariable("id") Long id ,Model model) {
+	public String getUpdateForm(@Valid @PathVariable("id") Long id ,Model model) {
 		Employee employee = employeeService.getById(id);
 		model.addAttribute("employee" ,employee);
 		
@@ -52,7 +54,7 @@ public class HomeController {
 			
 	}
 	@GetMapping("/delete/{id}")
-	public String Delete(@PathVariable("id") Long id) {
+	public String Delete( @PathVariable("id") Long id) {
 		employeeService.Delete(id);
 		return "redirect:/home/all";
 		
